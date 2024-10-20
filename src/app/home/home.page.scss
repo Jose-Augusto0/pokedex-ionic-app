@@ -1,0 +1,32 @@
+ion-content {
+    --background: #fff;
+}
+
+h1{
+    color: #000;
+}
+
+.header{
+    padding: 10px;
+}
+
+
+.card{
+    width: 150px;
+    height: 240px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+ 
+}
+.contentCart{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+ion-img{
+ padding: 10px;
+}
