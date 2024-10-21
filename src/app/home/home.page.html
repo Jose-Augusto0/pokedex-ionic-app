@@ -13,14 +13,12 @@
   <div class="contentCart">
     <ion-card class="card" *ngFor="let pokemon of pokemonsList">
       <ion-card-content>
-        <ion-img
-        [src]="pokemon.sprites.front_default" alt="pokemon"
-        ></ion-img>
+        <ion-img [src]="pokemon.sprites.front_default" alt="pokemon"></ion-img>
         <ion-card-header>
           <ion-card-title>{{pokemon?.name}}</ion-card-title>
         </ion-card-header>
 
-        <h4>0002</h4>
+        <h4>00{{pokemon?.id}}</h4>
       </ion-card-content>
     </ion-card>
   </div>
