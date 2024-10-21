@@ -15,4 +15,4 @@ import { DetailsComponentRoutingModule } from './details-routing.module';
   ],
   declarations: [DetailsComponent],
 })
-export class HomePageModule {}
+export class DetailsModule {}

@@ -12,7 +12,7 @@
   ></ion-searchbar>
   <div class="contentCart">
     <ion-card class="card" *ngFor="let pokemon of pokemonsList">
-      <ion-card-content>
+      <ion-card-content (click)="detailsPokemon(pokemon.name)">
         <ion-img [src]="pokemon.sprites.front_default" alt="pokemon"></ion-img>
         <ion-card-header>
           <ion-card-title>{{pokemon?.name}}</ion-card-title>

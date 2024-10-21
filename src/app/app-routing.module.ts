@@ -7,13 +7,8 @@ const routes: Routes = [
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   },
   {
-    path: '',
-    redirectTo: 'home',
-    pathMatch: 'full'
-  },
-  {
-    path: 'details',
-    loadChildren: () => import('./details/details-routing.module').then( m => m.DetailsComponentRoutingModule)
+    path: 'details/:pokeName',
+    loadChildren: () => import('./details/details.module').then( m => m.DetailsModule)
   },
 ];
 

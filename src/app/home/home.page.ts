@@ -1,6 +1,9 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { DataService } from '../services/data.service';
 
+import { Router } from '@angular/router';
+
+
 
 
 @Component({
@@ -12,12 +15,19 @@ export class HomePage implements OnInit{
 
   pokemonsList:any = []
 
-  constructor(private service: DataService) {}
+  constructor(private service: DataService, private router: Router) {}
 
   
   ngOnInit(): void {
     this.getPokemons()
   }
+
+  detailsPokemon(pokeName:number){
+    this.router.navigate(['/details', pokeName]);
+
+  }
+
+
   getPokemons(): void {
     const pokemonNames: string[] = [
       'pikachu',
@@ -48,8 +58,6 @@ export class HomePage implements OnInit{
             base_experience: res.base_experience,
           };
           this.pokemonsList.push(pokemon);
-          console.log(this.pokemonsList)
-
         },
         error: (err) => console.log('Não consegui encontrar o Pokémon', err),
       });
