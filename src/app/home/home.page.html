@@ -9,6 +9,8 @@
     animated="true"
     color="medium"
     placeholder="Digite o nome do pokemon"
+    [(ngModel)]="searchPokemon"
+    (ngModelChange)="onSearchChange($event)"
   ></ion-searchbar>
   <div class="contentCart">
     <ion-card class="card" *ngFor="let pokemon of pokemonsList">

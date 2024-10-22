@@ -2,31 +2,30 @@ import { Component, inject, OnInit } from '@angular/core';
 import { DataService } from '../services/data.service';
 
 import { Router } from '@angular/router';
-
-
-
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage implements OnInit{
-
-  pokemonsList:any = []
+export class HomePage implements OnInit {
+  pokemonsList: any = [];
+  searchPokemon: string = '';
 
   constructor(private service: DataService, private router: Router) {}
 
-  
   ngOnInit(): void {
-    this.getPokemons()
+    this.getPokemons();
   }
 
-  detailsPokemon(pokeName:number){
+  onSearchChange(value: string): void {
+    console.log('Valor digitado no search:', value);
+  }
+
+  detailsPokemon(pokeName: number) {
     this.router.navigate(['/details', pokeName]);
-
   }
-
 
   getPokemons(): void {
     const pokemonNames: string[] = [
@@ -43,8 +42,7 @@ export class HomePage implements OnInit{
     pokemonNames.filter((name) => {
       this.service.getPokemons(name).subscribe({
         next: (res) => {
-
-        const pokemon: any = {
+          const pokemon: any = {
             id: res.id,
             name: res.name,
             sprites: res.sprites,
@@ -62,10 +60,5 @@ export class HomePage implements OnInit{
         error: (err) => console.log('Não consegui encontrar o Pokémon', err),
       });
     });
-
-
-
   }
-
-  
 }
