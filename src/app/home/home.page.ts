@@ -1,8 +1,7 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DataService } from '../services/data.service';
-
 import { Router } from '@angular/router';
-import { FormControl } from '@angular/forms';
+import { debounceTime, distinctUntilChanged, fromEvent, map } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -11,16 +10,43 @@ import { FormControl } from '@angular/forms';
 })
 export class HomePage implements OnInit {
   pokemonsList: any = [];
-  searchPokemon: string = '';
 
   constructor(private service: DataService, private router: Router) {}
 
   ngOnInit(): void {
     this.getPokemons();
+    this.searchPokemon();
   }
 
-  onSearchChange(value: string): void {
-    console.log('Valor digitado no search:', value);
+  searchPokemon() {
+    const searchBox = document.getElementById('searchBox');
+
+    if (searchBox) {
+      fromEvent(searchBox, 'input')
+        .pipe(
+          debounceTime(1000),
+          map((event: any) => event.target.value),
+          distinctUntilChanged()
+        )
+        .subscribe((value: string) => {
+          if (value) {
+            this.service.getPokemons(value.toLowerCase()).subscribe({
+              next: (res) => {
+                this.pokemonsList = [];
+                const pokemon: any = {
+                  id: res.id,
+                  name: res.name,
+                  sprites: res.sprites,
+                };
+                this.pokemonsList.push(pokemon);
+              },
+              error: (err) => console.log('Pokémon não encontrado', err),
+            });
+          } else {
+            this.getPokemons();
+          }
+        });
+    }
   }
 
   detailsPokemon(pokeName: number) {
@@ -39,21 +65,15 @@ export class HomePage implements OnInit {
       'lugia',
     ];
 
-    pokemonNames.filter((name) => {
+    this.pokemonsList = [];
+
+    pokemonNames.forEach((name) => {
       this.service.getPokemons(name).subscribe({
         next: (res) => {
           const pokemon: any = {
             id: res.id,
             name: res.name,
             sprites: res.sprites,
-            types: res.types,
-            stats: res.stats,
-            moves: res.moves,
-            abilities: res.abilities,
-            height: res.height,
-            weight: res.weight,
-            species: res.species,
-            base_experience: res.base_experience,
           };
           this.pokemonsList.push(pokemon);
         },
