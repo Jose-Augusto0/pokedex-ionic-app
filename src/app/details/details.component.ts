@@ -19,8 +19,8 @@ export class DetailsComponent implements OnInit {
 
   ngOnInit() {
     const name = this.route.snapshot.paramMap.get('pokeName');
-    if (name) {
-      this.service.getPokemons(name).subscribe({
+    if (!name) {
+      this.service.getPokemons('pikachu').subscribe({
         next: (res) => {
           const pokemon: any = {
             id: res.id,
@@ -36,6 +36,7 @@ export class DetailsComponent implements OnInit {
             base_experience: res.base_experience,
           };
           this.pokemon = pokemon;
+          console.log(pokemon)
         },
         error: (err) => console.log('Pokémon não encontrado', err),
       });

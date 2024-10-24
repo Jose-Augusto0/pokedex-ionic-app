@@ -3,7 +3,11 @@
     <span class="material-symbols-outlined"> arrow_back </span>
     <h1 class="pokemonName">{{ pokemon.name }}</h1>
   </div>
-  <img src="" alt="" />
+  <img
+    class="pokedeImg"
+    src="https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/025.png"
+    alt=""
+  />
   <div class="contentSpeci">
     <ion-list lines="none">
       <ion-item (click)="nextTab(0)">
@@ -24,11 +28,52 @@
     </ion-list>
 
     <div class="tabsContent">
-      <div class="tab0" *ngIf="actualTab === 0">1</div>
-      <div class="tab1" *ngIf="actualTab === 1">2</div>
-      <div class="tab2" *ngIf="actualTab === 2">3</div>
-      <div class="tab3" *ngIf="actualTab === 3">4</div>
-      <div class="tab4" *ngIf="actualTab === 4">5</div>
+      <div class="tab0" *ngIf="actualTab === 1">
+        <div class="contentImgs">
+          <img
+            src="https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/025.png"
+            alt=""
+          />
+          <img
+            src="https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/025.png"
+            alt=""
+          />
+          <img
+            src="https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/025.png"
+            alt=""
+          />
+        </div>
+        <div class="descriptionForm">
+          <h1>Mega poder</h1>
+          <p>
+            Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry. Lorem Ipsum has been the industry's standard dummy text
+            ever since the 1500s,
+          </p>
+        </div>
+      </div>
+      <div class="tab1" *ngIf="actualTab === 0">
+        <h3>Weight {{ pokemon.weight }}</h3>
+        <h3>Height {{ pokemon.height }}</h3>
+        <h3>Base Exp {{ pokemon.base_experience }}</h3>
+        <h3>Monster</h3>
+        <h3>Dragon</h3>
+      </div>
+      <div class="tab2" *ngIf="actualTab === 2">
+        <h1 *ngFor="let types of pokemon.types">{{ types.type.name }}</h1>
+      </div>
+      <div class="tab3" *ngIf="actualTab === 3">
+        <div class="stats" *ngFor="let stats of pokemon.stats">
+          <h4>{{ stats.stat.name }}</h4>
+          <ion-progress-bar
+            [value]="stats.base_stat / 100"
+            color="success"
+          ></ion-progress-bar>
+        </div>
+      </div>
+      <div class="tab4" *ngIf="actualTab === 4">
+        <h1 *ngFor="let ability of pokemon.abilities">{{ability.ability.name}}</h1>
+      </div>
     </div>
   </div>
 </main>

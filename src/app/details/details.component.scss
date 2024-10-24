@@ -1,6 +1,74 @@
+.containerDetails {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 80%;
+  margin: 15px 0px;
+}
 
-ion-list{
-    display: flex;
-    width: 100%;
+.header span {
+  position: absolute;
+  left: 0;
+  font-weight: 700;
+}
+
+ion-list {
+  display: flex;
+  width: 100%;
+  padding: 0;
+}
+
+.pokedeImg {
+  background-color: aqua;
+  width: 90%;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.contentImgs {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.contentImgs img {
+  width: 100px;
+  border: 1px solid red;
+}
+
+.descriptionForm {
+  padding: 10px;
+}
+
+.tab1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.tab2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.tab4 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.stats {
+  padding: 5px;
 }
