@@ -20,7 +20,7 @@ export class DetailsComponent implements OnInit {
   ngOnInit() {
     const name = this.route.snapshot.paramMap.get('pokeName');
     if (!name) {
-      this.service.getPokemons('pikachu').subscribe({
+      this.service.getPokemons('blastoise').subscribe({
         next: (res) => {
           const pokemon: any = {
             id: res.id,

@@ -1,11 +1,11 @@
 <main class="containerDetails">
   <div class="header">
-    <span class="material-symbols-outlined"> arrow_back </span>
+    <span class="material-symbols-outlined" routerLink=""> arrow_back </span>
     <h1 class="pokemonName">{{ pokemon.name }}</h1>
   </div>
   <img
     class="pokedeImg"
-    src="https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/025.png"
+    [src]="pokemon.sprites.other.home.front_default"
     alt=""
   />
   <div class="contentSpeci">
@@ -31,15 +31,11 @@
       <div class="tab0" *ngIf="actualTab === 1">
         <div class="contentImgs">
           <img
-            src="https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/025.png"
+            [src]="pokemon.sprites.front_default"
             alt=""
           />
           <img
-            src="https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/025.png"
-            alt=""
-          />
-          <img
-            src="https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/025.png"
+            [src]="pokemon.sprites.back_default"
             alt=""
           />
         </div>
