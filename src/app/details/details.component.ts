@@ -19,8 +19,8 @@ export class DetailsComponent implements OnInit {
 
   ngOnInit() {
     const name = this.route.snapshot.paramMap.get('pokeName');
-    if (!name) {
-      this.service.getPokemons('blastoise').subscribe({
+    if (name) {
+      this.service.getPokemons(name).subscribe({
         next: (res) => {
           const pokemon: any = {
             id: res.id,
@@ -35,11 +35,17 @@ export class DetailsComponent implements OnInit {
             species: res.species,
             base_experience: res.base_experience,
           };
+          this.service.getSpecies(pokemon.species.url).subscribe({
+            next:(res) =>{
+              pokemon.description = res.flavor_text_entries[0].flavor_text
+              pokemon.color = res.color.name
+            }
+          })
           this.pokemon = pokemon;
-          console.log(pokemon)
         },
         error: (err) => console.log('Pokémon não encontrado', err),
       });
     }
   }
+
 }

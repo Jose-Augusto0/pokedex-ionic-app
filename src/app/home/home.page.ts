@@ -54,31 +54,26 @@ export class HomePage implements OnInit {
   }
 
   getPokemons(): void {
-    const pokemonNames: string[] = [
-      'pikachu',
-      'machamp',
-      'venusaur',
-      'arbok',
-      'blastoise',
-      'golbat',
-      'arceus',
-      'lugia',
-    ];
+    this.service.inicialPokemons$.subscribe((pokemonNames: string[]) => {
+      this.pokemonsList = []; 
 
-    this.pokemonsList = [];
-
-    pokemonNames.forEach((name) => {
-      this.service.getPokemons(name).subscribe({
-        next: (res) => {
-          const pokemon: any = {
-            id: res.id,
-            name: res.name,
-            sprites: res.sprites,
-          };
-          this.pokemonsList.push(pokemon);
-        },
-        error: (err) => console.log('Não consegui encontrar o Pokémon', err),
+      pokemonNames.forEach((name) => {
+        this.service.getPokemons(name).subscribe({
+          next: (res) => {
+            const pokemon = {
+              id: res.id,
+              name: res.name,
+              sprites: res.sprites,
+            };
+            this.pokemonsList.push(pokemon);
+          },
+          error: (err) => console.log('Não consegui encontrar o Pokémon', err),
+        });
       });
     });
+  }
+
+  loadMorePokemons(): void {
+    this.service.limit(4); 
   }
 }

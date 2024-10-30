@@ -19,9 +19,9 @@ h1 {
   justify-content: center;
 }
 
-.card:hover{
-    transform: scale(1.15);
-    transition: 1s;
+.card:hover {
+  transform: scale(1.15);
+  transition: 1s;
 }
 
 .contentCart {
@@ -35,11 +35,14 @@ ion-img {
   padding: 10px;
 }
 
+ion-card-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
 
-ion-card-content{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
+ion-button{
+  margin: 20px 0px;
 }

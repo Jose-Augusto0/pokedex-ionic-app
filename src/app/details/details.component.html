@@ -6,7 +6,7 @@
   <img
     class="pokedeImg"
     [src]="pokemon.sprites.other.home.front_default"
-    alt=""
+    [ngStyle]="{ 'background-color': pokemon.color }"
   />
   <div class="contentSpeci">
     <ion-list lines="none">
@@ -28,27 +28,20 @@
     </ion-list>
 
     <div class="tabsContent">
-      <div class="tab0" *ngIf="actualTab === 1">
+      <div class="tab0" *ngIf="actualTab === 0">
         <div class="contentImgs">
-          <img
-            [src]="pokemon.sprites.front_default"
-            alt=""
-          />
-          <img
-            [src]="pokemon.sprites.back_default"
-            alt=""
-          />
+          <img [src]="pokemon.sprites.front_default" alt="" />
+          <img [src]="pokemon.sprites.back_default" alt="" />
         </div>
         <div class="descriptionForm">
-          <h1>Mega poder</h1>
+          <h1>Power</h1>
           <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s,
+            {{pokemon.description}}
           </p>
+
         </div>
       </div>
-      <div class="tab1" *ngIf="actualTab === 0">
+      <div class="tab1" *ngIf="actualTab === 1">
         <h3>Weight {{ pokemon.weight }}</h3>
         <h3>Height {{ pokemon.height }}</h3>
         <h3>Base Exp {{ pokemon.base_experience }}</h3>
@@ -68,7 +61,9 @@
         </div>
       </div>
       <div class="tab4" *ngIf="actualTab === 4">
-        <h1 *ngFor="let ability of pokemon.abilities">{{ability.ability.name}}</h1>
+        <h1 *ngFor="let ability of pokemon.abilities">
+          {{ ability.ability.name }}
+        </h1>
       </div>
     </div>
   </div>
