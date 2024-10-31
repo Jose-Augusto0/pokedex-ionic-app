@@ -1,7 +1,14 @@
 <main class="containerDetails">
   <div class="header">
-    <span class="material-symbols-outlined" routerLink=""> arrow_back </span>
+    <i class="fa-solid fa-arrow-left" routerLink=""></i>
     <h1 class="pokemonName">{{ pokemon.name }}</h1>
+    <i
+      class="fa-solid fa-heart"
+      (click)="sendFavorite(pokemon)"
+      #btnFavorite
+      id="btn-favorite"
+      [attr.data-id]="pokemon.id"
+    ></i>
   </div>
   <img
     class="pokedeImg"
@@ -36,9 +43,8 @@
         <div class="descriptionForm">
           <h1>Power</h1>
           <p>
-            {{pokemon.description}}
+            {{ pokemon.description }}
           </p>
-
         </div>
       </div>
       <div class="tab1" *ngIf="actualTab === 1">
